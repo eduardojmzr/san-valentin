@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>¿Quieres ser mi 14 de febrero? ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #fff;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      max-width: 420px;
+      width: 90%;
+      backdrop-filter: blur(8px);
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.08);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .yes {
+      background-color: #ff2e63;
+      color: white;
+    }
+
+    .no {
+      background-color: #ffffff;
+      color: #ff2e63;
+    }
+
+    .result {
+      margin-top: 25px;
+      font-size: 1.3rem;
+      display: none;
+    }
+
+    .result img {
+      margin-top: 15px;
+      max-width: 100%;
+      border-radius: 15px;
+    }
+
+    /* Corazones animados */
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 24px;
+      animation: floatUp 4s linear forwards;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>💖 ¿Quieres ser mi 14 de febrero? 💖</h1>
+    <p>Prometo risas, abrazos y un día muy especial contigo ✨</p>
+
+    <div class="buttons">
+      <button class="yes" onclick="yesAction()">Sí 💕</button>
+      <button class="no" onmouseover="moveNo(this)" onclick="noAction()">No 🙈</button>
+    </div>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function yesAction() {
+      const result = document.getElementById('result');
+      result.style.display = 'block';
+      result.innerHTML = `🥰 ¡Sabía que dirías que sí!<br>Te amo muchísimo 💘<br>
+      <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Love gif">`;
+
+      // Crear corazones flotando
+      for (let i = 0; i < 25; i++) {
+        createHeart();
+      }
+    }
+
+    function noAction() {
+      const result = document.getElementById('result');
+      result.style.display = 'block';
+      result.innerHTML = `😢 Uy… casi 😅<br>Ese botón no quiere funcionar<br>
+      <img src="https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif" alt="Sad gif">`;
+    }
+
+    function moveNo(btn) {
+      const x = Math.random() * 200 - 100;
+      const y = Math.random() * 200 - 100;
+      btn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerText = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }
+  </script>
+</body>
+</html>
